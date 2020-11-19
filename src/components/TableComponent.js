@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -46,26 +46,26 @@ function createData(unique_id, name_th, name_en, last_upd_date) {
   return { unique_id, name_th, name_en, last_upd_date };
 }
 
-
 const rows = [];
-
-brokders()
-  .then((res) => {
-
-    for (const obj of res) {
-      rows.push(createData(obj.unique_id, obj.name_th, obj.name_en, obj.last_upd_date))
-    }
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-  
 function BrokersTable() {
 
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [data, setData] = React.useState(null);
+
+
+  useEffect(() => {
+
+    brokders().then(res => {
+
+      for (const object of res) {
+        rows.push(createData(object.unique_id, object.name_th, object.name_en, object.last_upd_date));
+      }
+      setData(rows);
+    });
+  });
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -76,7 +76,9 @@ function BrokersTable() {
     setPage(0);
   };
 
+  console.log('data', data);
   return (
+
 
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -95,24 +97,22 @@ function BrokersTable() {
           </TableHead>
           <TableBody>
             {
-            rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.unique_id}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+              rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => {
+                  return (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.unique_id}>
+                      {columns.map((column) => {
+                        const value = row[column.id];
+                        return (
+                          <TableCell key={column.id} align={column.align}>
+                            {value}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
           </TableBody>
         </Table>
       </TableContainer>
