@@ -1,16 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+// import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import StickyHeadTable from "./views/test";
-import TableComponent from "./components/TableComponent";
+// import StickyHeadTable from "./views/test";
+import BrokersTable from "./components/TableComponent";
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <App /> */}
-    <StickyHeadTable />
-    <TableComponent />
+    {/* <StickyHeadTable /> */}
+    <BrokersTable />
   </React.StrictMode>,
   document.getElementById("root")
 );
