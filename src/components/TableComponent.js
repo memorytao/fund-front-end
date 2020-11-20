@@ -10,6 +10,7 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import { brokders } from "../models/Funds";
 import LinearProgress from '@material-ui/core/LinearProgress';
+import ReactDOM from "react-dom";
 
 const columns = [
   { id: "unique_id", label: "ID", minWidth: 170 },
@@ -74,7 +75,7 @@ function BrokersTable() {
   };
 
   if (!data) return <div className={classes.load}>
-    <LinearProgress color="secondary"/>
+    <LinearProgress color="secondary" />
   </div>
 
   return (
@@ -131,4 +132,9 @@ function BrokersTable() {
   );
 }
 
-export default BrokersTable;
+ReactDOM.render(
+  <React.Suspense>
+    <BrokersTable />
+  </React.Suspense>,
+  document.getElementById('table_view')
+)
