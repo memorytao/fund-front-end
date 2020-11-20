@@ -62,11 +62,12 @@ export default function SignIn() {
 
         if (email.current.value === 'whoareyou') {
             setSignIn(true);
+            sessionStorage.setItem('isLogin',email.current.value)
         }
 
     };
 
-    if (signIn) {
+    if (signIn || sessionStorage.getItem('isLogin')   ) {
         return <BrokersTable />
     }
 
