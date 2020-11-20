@@ -7,9 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 // import BrokersTable from "./components/TableComponent";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Suspense>
     <App />
-  </React.StrictMode>,
+  </React.Suspense>,
   document.getElementById("root")
 );
 
