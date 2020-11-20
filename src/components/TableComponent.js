@@ -85,7 +85,6 @@ function BrokersTable() {
     )
   }
 
-
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>

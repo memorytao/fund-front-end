@@ -23,9 +23,7 @@ import SignIn from "./views/login";
 // )
 
 ReactDOM.render(
-  <React.StrictMode>
     <SignIn />
-  </React.StrictMode>
   ,
   document.getElementById('login')
 )
@@ -37,3 +35,4 @@ reportWebVitals();
 
 
 
+document.addEventListener('click', e => e.preventDefault)
