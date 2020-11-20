@@ -1,6 +1,5 @@
 // import logo from './logo.svg';
 import './App.css';
-import BrokersTable from './components/TableComponent'
 
 function App() {
   return (
@@ -22,8 +21,6 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-
-
   );
 }
 
