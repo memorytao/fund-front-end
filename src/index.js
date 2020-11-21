@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 // import StickyHeadTable from "./views/test";
 import BrokersTable from "./components/TableComponent";
 import SignIn from "./views/login";
+import PrimarySearchAppBar from "./views/AppBar";
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -21,6 +22,13 @@ import SignIn from "./views/login";
 // </React.Suspense>,
 // document.getElementById("table_view")
 // )
+
+
+// ReactDOM.render(
+// <PrimarySearchAppBar />,
+// document.getElementById('root')
+// );
+
 
 ReactDOM.render(
     <SignIn />
