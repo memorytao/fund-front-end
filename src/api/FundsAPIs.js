@@ -11,4 +11,4 @@ export const broker = async (id) => {
   return broker.json();
 };
 
-// createData(res.unique_id, res.name_th, res.name_en, res.last_upd_date);
+

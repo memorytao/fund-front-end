@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import BrokersTable from '../components/TableComponent';
+import BrokersTable from '../investment/fund/ListFundsCompany';
+import Alert from '@material-ui/lab/Alert';
 
 function Copyright() {
     return (
@@ -52,22 +53,39 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
     const classes = useStyles();
     const [signIn, setSignIn] = React.useState(false);
+    const [isAlter, setAlter] = React.useState(false);
 
     const email = React.useRef();
     const password = React.useRef();
+
 
     const onClickSignIn = (e) => {
 
         e.preventDefault();
 
-        if (email.current.value === 'whoareyou') {
+        if (email.current.value === 'admin' && password.current.value === 'password') {
             setSignIn(true);
-            sessionStorage.setItem('isLogin',email.current.value)
+            sessionStorage.setItem('isLogin', email.current.value)
+        } else {
+            setAlter(true);
         }
-
     };
 
-    if (signIn || sessionStorage.getItem('isLogin')   ) {
+
+    const SignInAlert = () => {
+
+        return <Alert variant="outlined" severity="error">
+            Email or Password incorrect!
+             </Alert>
+    };
+
+
+    if (signIn || sessionStorage.getItem('isLogin')) {
+
+        const isLoginSuccess = fetch(`http://localhost:9999/login?user=admin&pass=123`)
+            .then(res => res.json())
+            .then(data => data);
+        console.log(isLoginSuccess);
         return <BrokersTable />
     }
 
@@ -120,11 +138,14 @@ export default function SignIn() {
                     >
                         Sign In
           </Button>
+
+                    {isAlter && <SignInAlert /> }
+
                     <Grid container>
                         <Grid item xs>
                             <Link href="#" variant="body2">
                                 Forgot password?
-              </Link>
+                            </Link>
                         </Grid>
                         <Grid item>
                             <Link href="#" variant="body2">

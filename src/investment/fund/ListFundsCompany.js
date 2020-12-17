@@ -8,10 +8,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import { brokders } from "../models/Funds";
+import { brokders } from "../../api/FundsAPIs";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import ButtonAppBar from "../views/AppBar";
+import ButtonAppBar from "../../views/AppBar";
 
 const columns = [
   { id: "unique_id", label: "ID", minWidth: 170 },
